@@ -6,10 +6,10 @@ import { Cover } from '../features/Cover/Cover'
 function App() {
 
   return (
-    <>
+    <div>
       <AppRouter />
       <Cover />
-    </>
+    </div>
   )
 }
 
