@@ -1,6 +1,6 @@
 // MainPage.tsx
 import React from 'react';
-import { delay, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import styles from './styles.module.scss';
 
 import Icon1 from '../assets/instagram-svgrepo-com.svg';
@@ -42,10 +42,6 @@ const textContainerV = {
     visible: { opacity: 1, transition: { delay: 5.2, when: 'beforeChildren', } }
 };
 
-const charV = {
-    hidden: { opacity: 0, x: -8, filter: 'blur(6px)' },
-    visible: { opacity: 1, x: 0, filter: 'blur(0px)', transition: { duration: 0.3 } }
-};
 
 export const MainPage: React.FC = () => (
     <div className={styles.wrapper}>
@@ -64,7 +60,6 @@ export const MainPage: React.FC = () => (
             animate="visible"
         >
             {items.map(({ icon: Svg, text, link }, i) => {
-                const letters = Array.from(text);
                 return (
                     <motion.div
                         key={i}
