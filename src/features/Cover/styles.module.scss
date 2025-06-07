@@ -63,22 +63,33 @@
 }
 
 .cake {
-  --rs: 250px;  /* как далеко «разъезжаются» в начале */
-  --re:  40px;  /* где сходятся к концу */
+  --rs: 200px;  /* как далеко «разъезжаются» в начале */
+  --re:  120px;  /* где сходятся к концу */
 
   position: fixed;
   top: 50%;
   left: 50%;
   width: 80px;      /* соответствует пропсам Icon width/height */
   height: 80px;
+
   transform-origin: center;
+
   animation: orbit 5s cubic-bezier(.55,.05,.2,.95) forwards;
   filter: drop-shadow(0 4px 8px rgba(0,0,0,.15)); /* объём */
 
   /* фазовый сдвиг для равномерного расположения */
   &.cake1 { --sa:   0deg; }
   &.cake2 { --sa: 120deg; }
-  &.cake3 { --sa: 240deg; }
+  &.cake3 { --sa: 240deg; margin-bottom: 10px; }
+
+  // &.cake1 {
+  //   transform: rotate(20deg);
+  // }
+}
+
+.cakeShadow {
+  z-index: 1000;
+  color: #ebb1b7;
 }
 
 /* frostingTop, Cover и прочие блоки оставляем без изменений */

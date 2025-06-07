@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 
-import cake1 from '../../assets/cake2.svg';
+import cake1 from '../../assets/cake11.svg';
 import cake2 from '../../assets/cake1.svg';
 import cake3 from '../../assets/cake7.svg';
 import { Icon } from '../../shared/ui/Icon';
@@ -38,15 +38,21 @@ export const Cover = () => {
                 <div className={styles.frostingTop} />
 
                 <div className={styles.logo}>
-                    <span className={styles.logo__title}>Creamanzh</span>
+                    <span className={styles.logo__title}>Cremanzh</span>
                 </div>
 
-                <Icon Svg={cake1} width={120} height={120}
-                    className={`${styles.cake} ${styles.cake1} ${styles.cakeShadow}`} />
-                <Icon Svg={cake2} width={80} height={80}
-                    className={`${styles.cake} ${styles.cake2} ${styles.cakeShadow}`} />
-                <Icon Svg={cake3} width={80} height={80}
-                    className={`${styles.cake} ${styles.cake3} ${styles.cakeShadow}`} />
+                <div>
+                    <Icon Svg={cake1} width={80} height={80}
+                        className={`${styles.cake} ${styles.cake1} ${styles.cakeShadow}`} />
+                </div>
+                <div>
+                    <Icon Svg={cake2} width={80} height={80}
+                        className={`${styles.cake} ${styles.cake2} ${styles.cakeShadow}`} />
+                </div>
+                <div>
+                    <Icon Svg={cake3} width={90} height={90}
+                        className={`${styles.cake} ${styles.cake3} ${styles.cakeShadow}`} />
+                </div>
             </div>
         </div>
     );

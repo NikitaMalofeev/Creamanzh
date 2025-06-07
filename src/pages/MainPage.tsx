@@ -6,6 +6,8 @@ import Icon2 from '../assets/telegram-svgrepo-com.svg';
 import Icon3 from '../assets/whatsapp-svgrepo-com.svg';
 import { Icon } from '../shared/ui/Icon';
 
+import Mama from '../assets/mama.png'
+
 const items = [
     { icon: Icon3, text: 'Заказать Whatsapp', link: 'https://wa.me/79243618998' },
     { icon: Icon1, text: 'Посмотреть Instagram', link: 'https://www.instagram.com/cafe_cremanzh?igsh=bjIyM2V1cW43a3g4' },
@@ -46,11 +48,14 @@ const icon = {
 };
 
 export const MainPage = () => (
-    <>
+    <div style={{ height: '100dvh', background: 'rgb(155 29 29)' }} className={styles.wrapper}>
         {/* декоративные полукруги сверху/снизу */}
         <div className={styles.frostingEdgeTop} />
         <div className={styles.frostingEdgeBottom} />
-
+        <div className={styles.mama__container}>
+            <img src={Mama} alt="" className={styles.mama} />
+            <span className={styles.mama__title}>Cremanzh</span>
+        </div>
         {/* контент-контейнер */}
         {/* контейнер-анимация оставляем как был */}
         <motion.div
@@ -91,5 +96,5 @@ export const MainPage = () => (
             ))}
         </motion.div>
 
-    </>
+    </div>
 );

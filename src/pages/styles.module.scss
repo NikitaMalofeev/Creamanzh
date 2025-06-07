@@ -14,26 +14,66 @@ $scallop-height:40px; // «приплюснутый» радиус по Y (ме�
 $scallop-url: url('../assets/circle.svg');
 
 /* ────────────────────── оформление страницы ────────────────── */
-.page {
-  position: relative;
-  min-height: 100vh;
-      height: 100%;
-    width: 100%;
+.wrapper {
   display: flex;
-  font-family: 'Courier New', Courier, monospace;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 32px;
+
+}
+.page {
+  overflow: hidden;
+  position: relative;
+    width: 100%;
+    flex: 1;
+  display: flex;
+
+  flex-direction: column;
+  justify-content: start;
+  padding-top: 5%;
+  align-items: start;
+  padding-left: 32px;
+  gap: 10px;
     background-color: rgb(155 29 29);
   overflow: hidden; // чтобы не было горизонтального скролла
 }
 
-.row {
-  display: flex;
+.mama {
+
+  max-width: 300px;
+  max-height: 500px;
+  width: 100%;
+  border-radius: 50%;
+
+  &__container {
+    position: relative;
+      display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 12px;
-  min-width: 380px;
+  justify-content: center;
+    background-color: rgb(155, 29, 29);
+    border-bottom: 4px solid white;
+  }
+
+  &__title {
+
+    position: absolute;
+    bottom: 14px;
+    text-align: center;
+    font-size: 58px;
+    color: white;
+  }
+}
+
+.row {
+font-family: Arial, Helvetica, sans-serif;
+  font-weight: 500;
+
+  text-transform: uppercase;
+  display: flex;
+  font-size: 20px;
+  letter-spacing: 2px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 .iconWrap {
@@ -43,7 +83,7 @@ $scallop-url: url('../assets/circle.svg');
 }
 
 .link {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600;
   color: #ffffff;
   text-decoration: none;

@@ -11,6 +11,61 @@
   font-style: normal;
 }
 
+/* TwilightC Regular */
+@font-face {
+  font-family: 'TwilightC';
+  src: url('../../assets/fonts/TwilightC-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Futura Now Script — Extra Light */
+@font-face {
+  font-family: 'FuturaNowScript';
+  src: url('../../assets/fonts/zhuan_FuturaNowScript-XLt.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Futura Now Script — Light */
+@font-face {
+  font-family: 'FuturaNowScript';
+  src: url('../../assets/fonts/zhuan_FuturaNowScript-Lt.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Futura Now Script — Regular */
+@font-face {
+  font-family: 'FuturaNowScript';
+  src: url('../../assets/fonts/zhuan_FuturaNowScript-Rg.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Futura Now Script — Bold */
+@font-face {
+  font-family: 'FuturaNowScript';
+  src: url('../../assets/fonts/zhuan_FuturaNowScript-Bd.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Futura Now Script — Extra Bold */
+@font-face {
+  font-family: 'FuturaNowScript';
+  src: url('../../assets/fonts/zhuan_FuturaNowScript-XBd.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+
 input,
 button,
 textarea,
