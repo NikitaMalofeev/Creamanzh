@@ -143,3 +143,23 @@ $scallop-url: url('../../assets/circle.svg');
   bottom: 0;
   transform: scaleY(1);  // зеркалим, чтобы полукруги «свисали» наружу
 }
+
+/* ───────────────── Cover: эффект выхода ───────────────── */
+/* ───────────── Cover: плавное исчезновение ───────────── */
+@keyframes coverFadeOut {
+  from { opacity: 1; scale: 1 }
+  to   { opacity: 0; scale: 2 }
+}
+
+.cover {
+  background-color: rgb(155 29 29);
+  height: 100dvh;
+  width: 100%;
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+
+  /* исчезаем через 4 с */
+  animation: coverFadeOut .6s ease-out forwards;
+  animation-delay: 4s;   // старт анимации
+}

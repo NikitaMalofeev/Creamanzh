@@ -10,34 +10,45 @@ import { Icon } from '../../shared/ui/Icon';
 export const Cover = () => {
     const [isMounted, setIsMounted] = useState(true);
 
+    // useEffect(() => {
+    //     /* 4 с ожидание + 0,55 с сама анимация ≈ 4,6 с */
+    //     const hideTimer = setTimeout(() => setIsMounted(false), 4600);
+    //     return () => clearTimeout(hideTimer);
+    // }, []);
+
+    // if (!isMounted) return null;
+
     useEffect(() => {
-        const hideTimer = setTimeout(() => setIsMounted(false), 115_000);
+        /* 4 с ожидание + 0,55 с сама анимация ≈ 4,6 с */
+        const hideTimer = setTimeout(() => setIsMounted(false), 4600);
         return () => clearTimeout(hideTimer);
     }, []);
 
     if (!isMounted) return null;
 
+
     return (
         <div className={styles.cover}>
-            {/* Верхний кант */}
+            {/* верхний и нижний канты */}
             <div className={`${styles.frostingEdge} ${styles.frostingEdgeTop}`} />
-            {/* Нижний кант (повёрнут на 180°, чтобы «завиток» смотрел в заливку) */}
             <div className={`${styles.frostingEdge} ${styles.frostingEdgeBottom}`} />
 
+            {/* вся прежняя внутрянка */}
             <div className={styles.Cover}>
-                {/* Глазурь сверху */}
                 <div className={styles.frostingTop} />
 
-                {/* Центральный логотип-круг */}
                 <div className={styles.logo}>
                     <span className={styles.logo__title}>Creamanzh</span>
                 </div>
 
-                {/* Три «коржа», вращающиеся вокруг центра */}
-                <Icon Svg={cake1} width={120} height={120} className={`${styles.cake} ${styles.cake1} ${styles.cakeShadow}`} />
-                <Icon Svg={cake2} width={80} height={80} className={`${styles.cake} ${styles.cake2} ${styles.cakeShadow}`} />
-                <Icon Svg={cake3} width={80} height={80} className={`${styles.cake} ${styles.cake3} ${styles.cakeShadow}`} />
+                <Icon Svg={cake1} width={120} height={120}
+                    className={`${styles.cake} ${styles.cake1} ${styles.cakeShadow}`} />
+                <Icon Svg={cake2} width={80} height={80}
+                    className={`${styles.cake} ${styles.cake2} ${styles.cakeShadow}`} />
+                <Icon Svg={cake3} width={80} height={80}
+                    className={`${styles.cake} ${styles.cake3} ${styles.cakeShadow}`} />
             </div>
         </div>
     );
 };
+

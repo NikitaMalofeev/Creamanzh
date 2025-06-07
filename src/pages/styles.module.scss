@@ -1,5 +1,74 @@
 .page {
-    height: 100%;
+
+
+}
+
+/* ─────────────────── базовые цвета/размеры ─────────────────── */
+$page-bg: #8d1c1c; // ваш бордовый
+
+/* высота половинки эллипса (скаллопа)                           */
+$scallop-step: 100px;   // ширина одного элемента
+$scallop-height:40px; // «приплюснутый» радиус по Y (меняйте ↓)
+
+/* путь до svg-паттерна (положите файл из примера выше)          */
+$scallop-url: url('../assets/circle.svg');
+
+/* ────────────────────── оформление страницы ────────────────── */
+.page {
+  position: relative;
+  min-height: 100vh;
+      height: 100%;
     width: 100%;
+  display: flex;
+  font-family: 'Courier New', Courier, monospace;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
     background-color: rgb(155 29 29);
+  overflow: hidden; // чтобы не было горизонтального скролла
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 380px;
+}
+
+.iconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.link {
+  font-size: 24px;
+  font-weight: 600;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* ───────────────────── декоративные полукруги ───────────────── */
+.frostingEdgeTop,
+.frostingEdgeBottom {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: $scallop-height;
+  z-index: 9999;
+  pointer-events: none;
+
+  background-image: $scallop-url;
+  background-repeat: repeat-x;
+  background-size: $scallop-step $scallop-height; // 40 × 14
+}
+
+/* верхняя кромка */
+.frostingEdgeTop { top: 0;transform: scaleY(-1); }
+
+/* нижняя кромка, зеркалим по Y */
+.frostingEdgeBottom {
+  bottom: 0;
+  transform: scaleY(1);
 }
