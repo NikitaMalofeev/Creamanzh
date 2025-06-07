@@ -1,6 +1,6 @@
 // MainPage.tsx
 import React from 'react';
-import { motion } from 'framer-motion';
+import { delay, motion } from 'framer-motion';
 import styles from './styles.module.scss';
 
 import Icon1 from '../assets/instagram-svgrepo-com.svg';
@@ -18,22 +18,28 @@ const items = [
 // Анимационные варианты
 const wrapperV = {
     hidden: {},
-    visible: { transition: { staggerChildren: 0.3, delayChildren: 0.5 } }
+    visible: { transition: { staggerChildren: 0.3 } }
 };
 
+// MainPage.tsx
+const ROW_GAP = 0.35;               // шаг между строками
+
 const rowV = {
-    hidden: { width: 40, opacity: 1 },
-    visible: { width: '90%', transition: { duration: 0.7, ease: 'easeOut' } }
+    hidden: { width: 40 },
+    visible: (i: number) => ({
+        width: '95%',
+        transition: { duration: 0.4, ease: 'easeOut', delay: 5 + i * ROW_GAP }
+    })
 };
 
 const bgV = {
     hidden: { scaleX: 0, opacity: 0 },
-    visible: { scaleX: 1, opacity: 1, transition: { duration: 0.7, ease: 'easeOut' } }
+    visible: { scaleX: 1, opacity: 1, transition: { duration: 0.6, ease: 'easeOut', delay: 5 } }
 };
 
 const textContainerV = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { delay: 0.4, when: 'beforeChildren' } }
+    visible: { opacity: 1, transition: { delay: 5.2, when: 'beforeChildren', } }
 };
 
 const charV = {
@@ -62,6 +68,7 @@ export const MainPage: React.FC = () => (
                 return (
                     <motion.div
                         key={i}
+                        custom={i}               // <── добавьте это
                         className={styles.row}
                         variants={rowV}
                         role="button"
@@ -73,6 +80,7 @@ export const MainPage: React.FC = () => (
                             }
                         }}
                         whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.9 }}
                     >
                         {/* фон-полоска */}
                         <motion.div
@@ -88,11 +96,7 @@ export const MainPage: React.FC = () => (
 
                         {/* текст по буквам */}
                         <motion.span className={styles.link} variants={textContainerV}>
-                            {letters.map((ch, idx) => (
-                                <motion.span key={idx} variants={charV}>
-                                    {ch}
-                                </motion.span>
-                            ))}
+                            {text}
                         </motion.span>
                     </motion.div>
                 );
@@ -100,4 +104,3 @@ export const MainPage: React.FC = () => (
         </motion.div>
     </div>
 );
- 

@@ -8,7 +8,7 @@ function App() {
   return (
     <div>
       <AppRouter />
-      {/* <Cover /> */}
+      <Cover />
     </div>
   )
 }

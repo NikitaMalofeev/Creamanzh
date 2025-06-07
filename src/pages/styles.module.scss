@@ -8,7 +8,7 @@
 
 .page {
   flex: 1;
-  padding: 5% 0 0 15px;
+  padding: 5% 10px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -41,10 +41,12 @@
 
 /* ─── рядок ─── */
 .row {
+  max-width: 600px;
   position: relative;
   display: flex;
+  border: 2px solid white;
   background: white;
-  min-width: 60px;
+  min-width: 64px;
   text-transform: uppercase;
   padding: 5px 10px;
   letter-spacing: 2px;
