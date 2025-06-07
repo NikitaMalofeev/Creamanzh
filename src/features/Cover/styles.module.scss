@@ -1,0 +1,86 @@
+/* Оболочка заставки */
+.Cover {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: transparent;
+  transition: opacity .3s ease-in-out;
+
+  &.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+/* Круг­-логотип в центре */
+.logo {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: #fff;
+  z-index: 2;          // всегда поверх «коржей»
+}
+
+/* «Глазурь» сверху */
+.frostingTop {
+  background: #fff;
+  height: 80px;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    width: 200%;
+    height: 40px;
+    background-repeat: repeat-x;
+    background-size: 40px 40px;
+    background-image: radial-gradient(circle at 20px 20px, #fff 20px, transparent 21px);
+    transform: translateX(-20px);
+  }
+}
+
+/* ------------------------------------------------------------
+   Анимация трёх «коржей», вращающихся 2 полных оборота
+   и плавно «сжимающихся» к центру
+   ------------------------------------------------------------ */
+@keyframes orbit {
+  /* --sa = стартовый угол | --rs = начальный радиус | --re = конечный радиус */
+  0%   { transform: rotate(var(--sa)) translateX(var(--rs)); }
+  100% { transform: rotate(calc(var(--sa) + 720deg)) translateX(var(--re)); }
+}
+
+.cake {
+  --rs: 160px;   /* сколько отстоят друг от друга в начале */
+  --re:  60px;   /* на каком радиусе сойдутся к финалу */
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 90px;
+  height: 90px;
+  transform-origin: center;
+  /* первый translate(-50%,-50%) нужен, чтобы центр изображения
+     совпал с центром экрана ДО применения анимации */
+  transform: translate(-50%, -50%);
+  z-index: 1;
+
+  animation: orbit 5s cubic-bezier(.55, .05, .2, .95) forwards;
+}
+
+/* фазовый сдвиг для каждого из трёх «коржей» */
+.cake1 { --sa: 0deg;   }
+.cake2 { --sa: 120deg; }
+.cake3 { --sa: 240deg; }
+
+/* Немного тени для объёма во время вращения */
+.cakeShadow {
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,.15));
+}
