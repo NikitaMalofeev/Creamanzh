@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 
-import cake1 from '../../assets/cake7.svg';
+import cake1 from '../../assets/cake2.svg';
 import cake2 from '../../assets/cake1.svg';
-import cake3 from '../../assets/cake3.svg';
+import cake3 from '../../assets/cake7.svg';
 import { Icon } from '../../shared/ui/Icon';
 
 export const Cover = () => {
@@ -30,9 +30,9 @@ export const Cover = () => {
             </div>
 
             {/* Три «коржа», вращающиеся вокруг центра */}
-            <Icon Svg={cake1} width={60} height={60} className={`${styles.cake} ${styles.cake1} ${styles.cakeShadow}`} />
-            <Icon Svg={cake2} width={60} height={60} className={`${styles.cake} ${styles.cake2} ${styles.cakeShadow}`} />
-            <Icon Svg={cake3} width={60} height={60} className={`${styles.cake} ${styles.cake3} ${styles.cakeShadow}`} />
+            <Icon Svg={cake1} width={120} height={120} className={`${styles.cake} ${styles.cake1} ${styles.cakeShadow}`} />
+            <Icon Svg={cake2} width={80} height={80} className={`${styles.cake} ${styles.cake2} ${styles.cakeShadow}`} />
+            <Icon Svg={cake3} width={80} height={80} className={`${styles.cake} ${styles.cake3} ${styles.cakeShadow}`} />
         </div>
     );
 };

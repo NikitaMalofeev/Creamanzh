@@ -4,6 +4,13 @@
     box-sizing: border-box;
 }
 
+@font-face {
+  font-family: 'TwilightC';
+  src: url('../../assets/fonts/TwilightC-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
 input,
 button,
 textarea,
@@ -17,9 +24,10 @@ button {
     border: none;
 }
 
-// body {
-//     height: 100vh;
-// }
+body {
+    height: 100vh;
+    font-family: TwilightC, sans-serif;
+}
 
 #root {
     height: 100vh;

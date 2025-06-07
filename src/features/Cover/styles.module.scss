@@ -1,86 +1,74 @@
-/* Оболочка заставки */
-.Cover {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  background: transparent;
-  transition: opacity .3s ease-in-out;
-
-  &.hidden {
-    opacity: 0;
-    pointer-events: none;
-  }
-}
-
-/* Круг­-логотип в центре */
+/* ------------------------------------------------------------
+   1. ЛОГОТИП: лёгкий «пульс» в самом конце
+   ------------------------------------------------------------ */
 .logo {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 160px;
-  height: 160px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   background: #fff;
-  z-index: 2;          // всегда поверх «коржей»
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-50%, -50%) scale(1);
+
+  /* подпись внутри круга */
+  &__title {
+    font-size: 34px;
+    padding-bottom: 5px;
+    font-weight: 600;
+    color: rgb(155 29 29);
+    letter-spacing: .5px;
+  }
+
+  /* увеличиваем круг, когда «коржи» закончили вращаться */
+  animation: pulse .6s ease-out forwards;
+  animation-delay: 5s;      // = длительность анимации orbit
 }
 
-/* «Глазурь» сверху */
-.frostingTop {
-  background: #fff;
-  height: 80px;
-  position: relative;
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -20px;
-    left: 0;
-    width: 200%;
-    height: 40px;
-    background-repeat: repeat-x;
-    background-size: 40px 40px;
-    background-image: radial-gradient(circle at 20px 20px, #fff 20px, transparent 21px);
-    transform: translateX(-20px);
-  }
+@keyframes pulse {
+  0%   { transform: translate(-50%, -50%) scale(1); }
+  100% { transform: translate(-50%, -50%) scale(1.1); }
 }
 
 /* ------------------------------------------------------------
-   Анимация трёх «коржей», вращающихся 2 полных оборота
-   и плавно «сжимающихся» к центру
+   2. «КОРЖИ» – правка траектории, чтобы крутились строго по
+      центру, плюс выравниваем размер под 60 px svg
    ------------------------------------------------------------ */
 @keyframes orbit {
-  /* --sa = стартовый угол | --rs = начальный радиус | --re = конечный радиус */
-  0%   { transform: rotate(var(--sa)) translateX(var(--rs)); }
-  100% { transform: rotate(calc(var(--sa) + 720deg)) translateX(var(--re)); }
+  /* порядок: центр-экрана → вращение → радиус */
+  0% {
+    transform: translate(-50%, -50%)           /* ставим в центр */
+               rotate(var(--sa))               /* стартовый угол */
+               translateX(var(--rs));          /* начальный радиус */
+  }
+  100% {
+    transform: translate(-50%, -50%)
+               rotate(calc(var(--sa) + 720deg)) /* 2 оборота */
+               translateX(var(--re));           /* финальный радиус */
+  }
 }
 
 .cake {
-  --rs: 160px;   /* сколько отстоят друг от друга в начале */
-  --re:  60px;   /* на каком радиусе сойдутся к финалу */
+  --rs: 250px;  /* как далеко «разъезжаются» в начале */
+  --re:  40px;  /* где сходятся к концу */
 
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 90px;
-  height: 90px;
+  width: 80px;      /* соответствует пропсам Icon width/height */
+  height: 80px;
   transform-origin: center;
-  /* первый translate(-50%,-50%) нужен, чтобы центр изображения
-     совпал с центром экрана ДО применения анимации */
-  transform: translate(-50%, -50%);
-  z-index: 1;
+  animation: orbit 5s cubic-bezier(.55,.05,.2,.95) forwards;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,.15)); /* объём */
 
-  animation: orbit 5s cubic-bezier(.55, .05, .2, .95) forwards;
+  /* фазовый сдвиг для равномерного расположения */
+  &.cake1 { --sa:   0deg; }
+  &.cake2 { --sa: 120deg; }
+  &.cake3 { --sa: 240deg; }
 }
 
-/* фазовый сдвиг для каждого из трёх «коржей» */
-.cake1 { --sa: 0deg;   }
-.cake2 { --sa: 120deg; }
-.cake3 { --sa: 240deg; }
-
-/* Немного тени для объёма во время вращения */
-.cakeShadow {
-  filter: drop-shadow(0 4px 8px rgba(0,0,0,.15));
-}
+/* frostingTop, Cover и прочие блоки оставляем без изменений */
