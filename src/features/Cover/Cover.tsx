@@ -24,9 +24,7 @@ export const Cover = () => {
 
             {/* Центральный логотип-круг */}
             <div className={styles.logo}>
-                <span className={styles.logo__title}>
-                    Creamanzh
-                </span>
+                <span className={styles.logo__title}>Creamanzh</span>
             </div>
 
             {/* Три «коржа», вращающиеся вокруг центра */}
@@ -34,5 +32,6 @@ export const Cover = () => {
             <Icon Svg={cake2} width={80} height={80} className={`${styles.cake} ${styles.cake2} ${styles.cakeShadow}`} />
             <Icon Svg={cake3} width={80} height={80} className={`${styles.cake} ${styles.cake3} ${styles.cakeShadow}`} />
         </div>
+
     );
 };
