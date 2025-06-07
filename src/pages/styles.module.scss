@@ -1,117 +1,110 @@
-.page {
-
-
-}
-
-/* ─────────────────── базовые цвета/размеры ─────────────────── */
-$page-bg: #8d1c1c; // ваш бордовый
-
-/* высота половинки эллипса (скаллопа)                           */
-$scallop-step: 100px;   // ширина одного элемента
-$scallop-height:40px; // «приплюснутый» радиус по Y (меняйте ↓)
-
-/* путь до svg-паттерна (положите файл из примера выше)          */
-$scallop-url: url('../assets/circle.svg');
-
-/* ────────────────────── оформление страницы ────────────────── */
+// styles.module.scss
 .wrapper {
   display: flex;
   flex-direction: column;
-
+  height: 100vh;
+  background: #8d1c1c;
 }
-.page {
-  overflow: hidden;
-  position: relative;
-    width: 100%;
-    flex: 1;
-  display: flex;
 
+.page {
+  flex: 1;
+  padding: 5% 0 0 15px;
+  display: flex;
   flex-direction: column;
-  justify-content: start;
-  padding-top: 5%;
-  align-items: start;
-  padding-left: 15px;
   gap: 10px;
-    background-color: rgb(155 29 29);
-  overflow: hidden; // чтобы не было горизонтального скролла
+  overflow: hidden;
+  align-items: center;
+  position: relative;
+}
+
+.mama__container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #8d1c1c;
+  border-bottom: 4px solid white;
 }
 
 .mama {
-
-  max-width: 300px;
-  max-height: 500px;
   width: 100%;
+  max-width: 300px;
   border-radius: 50%;
-
-  &__container {
-    position: relative;
-      display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-    background-color: rgb(155, 29, 29);
-    border-bottom: 4px solid white;
-  }
-
-  &__title {
-
-    position: absolute;
-    bottom: 14px;
-    text-align: center;
-    font-size: 58px;
-    color: white;
-  }
 }
 
+.mama__title {
+  position: absolute;
+  bottom: 14px;
+  font-size: 58px;
+  color: white;
+}
+
+/* ─── рядок ─── */
 .row {
-font-family: Arial, Helvetica, sans-serif;
-  font-weight: 500;
-  width: 95%;
-  background-color: pink;
-  color: rgb(155, 29, 29);;
-  border-radius: 20px;
-  padding: 5px 15px;
-  text-transform: uppercase;
+  position: relative;
   display: flex;
-  font-size: 20px;
+  background: white;
+  min-width: 60px;
+  text-transform: uppercase;
+  padding: 5px 10px;
   letter-spacing: 2px;
   align-items: center;
-  justify-content: start;
   gap: 8px;
+  width: 95%;       // конечная ширина
+  max-width: 600px; // опционально
+  border-radius: 20px;
+  cursor: pointer;
+  overflow: hidden;
 }
 
-.iconWrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* фон появляется через анимацию */
+.rowBg {
+  position: absolute;
+  inset: 0;
+  background: pink;
+  z-index: 0;
 }
 
+.iconWrap,
 .link {
-  font-size: 18px;
-  font-weight: 600;
-  color: rgb(155, 29, 29);
-  text-decoration: none;
+  position: relative;
+  z-index: 1;
 }
 
-/* ───────────────────── декоративные полукруги ───────────────── */
+/* текст */
+.link {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  font: 600 18px/1 Arial, sans-serif;
+  color: #8d1c1c;
+  text-shadow: -4px 0 6px rgba(255, 255, 255, 0.45);
+}
+
+/* полукруги сверху/снизу */
+$fbg: #8d1c1c;
+$step: 100px;
+$height: 40px;
+$url: url('../assets/circle.svg');
+
 .frostingEdgeTop,
 .frostingEdgeBottom {
   position: fixed;
   left: 0;
   width: 100%;
-  height: $scallop-height;
-  z-index: 9999;
-  pointer-events: none;
-
-  background-image: $scallop-url;
+  height: $height;
+  background-image: $url;
   background-repeat: repeat-x;
-  background-size: $scallop-step $scallop-height; // 40 × 14
+  background-size: $step $height;
+  pointer-events: none;
+  z-index: 10;
 }
 
-/* верхняя кромка */
-.frostingEdgeTop { top: 0;transform: scaleY(-1); }
+.frostingEdgeTop {
+  top: 0;
+  transform: scaleY(-1);
+}
 
-/* нижняя кромка, зеркалим по Y */
 .frostingEdgeBottom {
   bottom: 0;
   transform: scaleY(1);

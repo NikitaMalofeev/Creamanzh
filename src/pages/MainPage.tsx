@@ -1,100 +1,103 @@
+// MainPage.tsx
+import React from 'react';
 import { motion } from 'framer-motion';
 import styles from './styles.module.scss';
 
 import Icon1 from '../assets/instagram-svgrepo-com.svg';
 import Icon2 from '../assets/telegram-svgrepo-com.svg';
 import Icon3 from '../assets/whatsapp-svgrepo-com.svg';
+import Mama from '../assets/mama.png';
 import { Icon } from '../shared/ui/Icon';
-
-import Mama from '../assets/mama.png'
 
 const items = [
     { icon: Icon3, text: 'Заказать Whatsapp', link: 'https://wa.me/79243618998' },
     { icon: Icon1, text: 'Посмотреть Instagram', link: 'https://www.instagram.com/cafe_cremanzh?igsh=bjIyM2V1cW43a3g4' },
     { icon: Icon2, text: 'Заказать Telegram', link: 'https://t.me/Anzhelika_grosheva' }
-];
+] as const;
 
-// ──────────────────────────────────────────────────────────────
-// анимационные варианты
-// ──────────────────────────────────────────────────────────────
-const container = {
+// Анимационные варианты
+const wrapperV = {
     hidden: {},
-    visible: {
-        transition: { staggerChildren: 0.35, delayChildren: 5 }      // очередность выезда
-    }
+    visible: { transition: { staggerChildren: 0.3, delayChildren: 0.5 } }
 };
 
-const row = {
-    hidden: { x: '100vw', opacity: 0 },
-    visible: {
-        x: 0,
-        opacity: 1,
-        transition: { type: 'tween', duration: 0.8, ease: 'easeOut' }
-    }
+const rowV = {
+    hidden: { width: 40, opacity: 1 },
+    visible: { width: '90%', transition: { duration: 0.7, ease: 'easeOut' } }
 };
 
-// иконка едет быстрее + «покачивание» после остановки
-const icon = {
-    hidden: { x: '100vw', opacity: 0 },
-    visible: {
-        x: 0,
-        opacity: 1,
-        rotate: [0, 0, 0, 8, -8, 5, -5, 2, -2, 0], // лёгкое покачивание
-        transition: {
-            x: { type: 'tween', duration: 0.55 },
-            rotate: { delay: 0.55, duration: 0.55, ease: 'easeInOut' }
-        }
-    }
+const bgV = {
+    hidden: { scaleX: 0, opacity: 0 },
+    visible: { scaleX: 1, opacity: 1, transition: { duration: 0.7, ease: 'easeOut' } }
 };
 
-export const MainPage = () => (
-    <div style={{ height: '100dvh', background: 'rgb(155 29 29)' }} className={styles.wrapper}>
-        {/* декоративные полукруги сверху/снизу */}
+const textContainerV = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { delay: 0.4, when: 'beforeChildren' } }
+};
+
+const charV = {
+    hidden: { opacity: 0, x: -8, filter: 'blur(6px)' },
+    visible: { opacity: 1, x: 0, filter: 'blur(0px)', transition: { duration: 0.3 } }
+};
+
+export const MainPage: React.FC = () => (
+    <div className={styles.wrapper}>
         <div className={styles.frostingEdgeTop} />
         <div className={styles.frostingEdgeBottom} />
+
         <div className={styles.mama__container}>
             <img src={Mama} alt="" className={styles.mama} />
             <span className={styles.mama__title}>Cremanzh</span>
         </div>
-        {/* контент-контейнер */}
-        {/* контейнер-анимация оставляем как был */}
+
         <motion.div
             className={styles.page}
-            variants={container}
+            variants={wrapperV}
             initial="hidden"
             animate="visible"
         >
-            {items.map(({ icon: Svg, text, link }, idx) => (
-                <motion.div
-                    /* ⬇️   было:  component={motion.a} href=… target=…  */
-                    /* ⬆️   стало: обычный div + onClick */
-                    key={idx}
-                    className={styles.row}
-                    variants={row}
-                    /* ---------- открываем в новой вкладке по клику ---------- */
-                    onClick={() => {
-                        window.open(link, '_blank', 'noopener,noreferrer');
-                    }}
-                    /* -------------------------------------------------------- */
-                    role="button"     /* чтобы табался и озвучивался как кнопка */
-                    tabIndex={0}      /* ↑ даст возможность навигации с клавы  */
-                    onKeyDown={(e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
-                            window.open(link, '_blank', 'noopener,noreferrer');
-                        }
-                    }}
-                    whileHover={{ scale: 1.05 }}
-                >
-                    {/* иконка (анимация «быстрее + качание») */}
-                    <motion.div variants={icon} className={styles.iconWrap}>
-                        <Icon Svg={Svg} width={text === 'Заказать Whatsapp' ? 40 : 40} height={text === 'Заказать Whatsapp' ? 40 : 40} />
+            {items.map(({ icon: Svg, text, link }, i) => {
+                const letters = Array.from(text);
+                return (
+                    <motion.div
+                        key={i}
+                        className={styles.row}
+                        variants={rowV}
+                        role="button"
+                        tabIndex={0}
+                        onClick={() => window.open(link, '_blank', 'noopener,noreferrer')}
+                        onKeyDown={e => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                                window.open(link, '_blank', 'noopener,noreferrer');
+                            }
+                        }}
+                        whileHover={{ scale: 1.05 }}
+                    >
+                        {/* фон-полоска */}
+                        <motion.div
+                            className={styles.rowBg}
+                            variants={bgV}
+                            style={{ transformOrigin: 'center' }}
+                        />
+
+                        {/* иконка сразу */}
+                        <div className={styles.iconWrap}>
+                            <Icon Svg={Svg} width={40} height={40} />
+                        </div>
+
+                        {/* текст по буквам */}
+                        <motion.span className={styles.link} variants={textContainerV}>
+                            {letters.map((ch, idx) => (
+                                <motion.span key={idx} variants={charV}>
+                                    {ch}
+                                </motion.span>
+                            ))}
+                        </motion.span>
                     </motion.div>
-
-                    <span className={styles.link}>{text}</span>
-                </motion.div>
-            ))}
+                );
+            })}
         </motion.div>
-
     </div>
 );
+ 
