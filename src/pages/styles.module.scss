@@ -30,7 +30,7 @@ $scallop-url: url('../assets/circle.svg');
   justify-content: start;
   padding-top: 5%;
   align-items: start;
-  padding-left: 32px;
+  padding-left: 15px;
   gap: 10px;
     background-color: rgb(155 29 29);
   overflow: hidden; // чтобы не было горизонтального скролла
@@ -66,13 +66,17 @@ $scallop-url: url('../assets/circle.svg');
 .row {
 font-family: Arial, Helvetica, sans-serif;
   font-weight: 500;
-
+  width: 95%;
+  background-color: pink;
+  color: rgb(155, 29, 29);;
+  border-radius: 20px;
+  padding: 5px 15px;
   text-transform: uppercase;
   display: flex;
   font-size: 20px;
   letter-spacing: 2px;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   gap: 8px;
 }
 
@@ -83,9 +87,9 @@ font-family: Arial, Helvetica, sans-serif;
 }
 
 .link {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
-  color: #ffffff;
+  color: rgb(155, 29, 29);
   text-decoration: none;
 }
 

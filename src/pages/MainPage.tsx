@@ -88,7 +88,7 @@ export const MainPage = () => (
                 >
                     {/* иконка (анимация «быстрее + качание») */}
                     <motion.div variants={icon} className={styles.iconWrap}>
-                        <Icon Svg={Svg} width={40} height={40} />
+                        <Icon Svg={Svg} width={text === 'Заказать Whatsapp' ? 40 : 40} height={text === 'Заказать Whatsapp' ? 40 : 40} />
                     </motion.div>
 
                     <span className={styles.link}>{text}</span>
